@@ -60,7 +60,7 @@
 
 // Core XY
 //#define SAPPHIRE_PRO
-//#define SAPPHIRE_PLUS
+#define SAPPHIRE_PLUS
 
 // Cartesian
 //#define BLUER
@@ -90,10 +90,10 @@
 // Motion Control Settings
 // New Motion Control              - Classic Jerk [OFF] | S-Curve Acceleration [ON]  | Junction Deviation Factor [ON]
 //#define MOTION_NEW
-//#define MOTION_NEW_JD           // If there is a jerky movement during small circular movements, activate the function
+#define MOTION_NEW_JD           // If there is a jerky movement during small circular movements, activate the function
 
 // Classic Motion Control          - Classic Jerk [ON]  | S-Curve Acceleration [OFF] | Junction Deviation Factor [OFF]
-#define MOTION_CLASSIC
+//#define MOTION_CLASSIC
 
 
 // Linear Pressure Control
@@ -122,12 +122,12 @@
 //          TMC2208, TMC2208_STANDALONE, TMC2209, TMC2209_STANDALONE,
 //          TMC26X,  TMC26X_STANDALONE,  TMC2660, TMC2660_STANDALONE,
 //          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
-//#define CUSTOM_STEPPER_DRIVERS
+#define CUSTOM_STEPPER_DRIVERS
 #if ENABLED(CUSTOM_STEPPER_DRIVERS)
-  #define DRIVER_X TMC2209_STANDALONE
-  #define DRIVER_Y TMC2209_STANDALONE
-  #define DRIVER_Z TMC2209_STANDALONE
-  #define DRIVER_E0 TMC2209_STANDALONE
+  #define DRIVER_X TMC2209
+  #define DRIVER_Y TMC2209
+  #define DRIVER_Z TMC2209
+  #define DRIVER_E0 TMC2209
   //#define DRIVER_E1 TMC2209_STANDALONE
   //#define DRIVER_Z2 TMC2209_STANDALONE
 
@@ -142,34 +142,34 @@
 // Custom Axis Steps Per MM
 // If you have calibrated the extruder before, you can enter the steps here, also be specified individually for the other axes.
 
-//#define STEPS_X         0  // Normally no change needed...
-//#define STEPS_Y         0  // Normally no change needed...
-//#define STEPS_Z         0  // Normally no change needed...
-//#define STEPS_E0        0
+#define STEPS_X        80.3  // Normally no change needed...
+#define STEPS_Y        80.3  // Normally no change needed...
+#define STEPS_Z        400   // Normally no change needed...
+#define STEPS_E0       433.68
 
 // Custom Bed Size
 // If you have a different size of a print bed, enter it here
-//#define CUSTOM_BED_SIZE
+#define CUSTOM_BED_SIZE
 #if ENABLED(CUSTOM_BED_SIZE)
-  #define X_BED_SIZE_CUSTOM 200
-  #define Y_BED_SIZE_CUSTOM 200
-  #define Z_BED_SIZE_CUSTOM 200
+  #define X_BED_SIZE_CUSTOM 310
+  #define Y_BED_SIZE_CUSTOM 310
+  #define Z_BED_SIZE_CUSTOM 345
 #endif
 
 // Custom PID & TEMP SENSOR Settings  
 // Normally no change necessary, unless it does not maintain the set temperature + -1 °
-//#define CUSTOM_HOTEND_PID // HOTEND
+#define CUSTOM_HOTEND_PID // HOTEND
   #if ENABLED(CUSTOM_HOTEND_PID)
-    #define CUSTOM_Kp 1
-    #define CUSTOM_Ki 1
-    #define CUSTOM_Kd 1
+    #define CUSTOM_Kp 8.41
+    #define CUSTOM_Ki 0.41
+    #define CUSTOM_Kd 43.21
   #endif
 
-//#define CUSTOM_BED_PID    // HEATED BED
+#define CUSTOM_BED_PID    // HEATED BED
   #if ENABLED(CUSTOM_BED_PID)
-    #define CUSTOM_BED_Kp 1
-    #define CUSTOM_BED_Ki 1
-    #define CUSTOM_BED_Kd 1
+    #define CUSTOM_BED_Kp 19.95
+    #define CUSTOM_BED_Ki 3.51
+    #define CUSTOM_BED_Kd 75.71
   #endif
 
 //#define CUSTOM_TEMP_SENSOR_0 5  // 5 : 100K thermistor - ATC Semitec 104GT-2/104NT-4-R025H42G (Used in ParCan, J-Head, and E3D) (4.7k pullup)
@@ -217,11 +217,11 @@
 
 //#define SAPPHIRE_GRAPHICAL_TFT_CUSTOM
 #if ENABLED (SAPPHIRE_GRAPHICAL_TFT_CUSTOM)
-#define COLOR_CUSTOM_0 0xFFFF // UI
-#define COLOR_CUSTOM_1 0xFFFF // BACKGROUND
-#define COLOR_CUSTOM_2 0xFFFF // CANCEL 
-#define COLOR_CUSTOM_3 0xFFFF // ARROWS
-#define COLOR_CUSTOM_4 0xFFFF // OK/MENU
+  #define COLOR_CUSTOM_0 0xFFFF // UI
+  #define COLOR_CUSTOM_1 0xFFFF // BACKGROUND
+  #define COLOR_CUSTOM_2 0xFFFF // CANCEL 
+  #define COLOR_CUSTOM_3 0xFFFF // ARROWS
+  #define COLOR_CUSTOM_4 0xFFFF // OK/MENU
 #endif
 
 
@@ -684,8 +684,8 @@
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
 #if ENABLED(PIDTEMP)
-  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
-  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+  #define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+  #define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
   //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
 
@@ -1133,7 +1133,7 @@
  */
 #if ANY (SAPPHIRE_PRO, SAPPHIRE_PLUS)
     //Sapphire Pro
-    #define DEFAULT_MAX_FEEDRATE          { 300, 300, 10, 50 }
+    #define DEFAULT_MAX_FEEDRATE          { 300, 300, 10, 70 }
   #elif ENABLED(BLUER)
     //Bluer
     #define DEFAULT_MAX_FEEDRATE          { 250, 250, 10, 50 }
@@ -1244,7 +1244,7 @@
   #define S_CURVE_ACCELERATION
 #else
   // No Preset Classic Motion
-  //#define S_CURVE_ACCELERATION
+  #define S_CURVE_ACCELERATION
 #endif
 
 //===========================================================================
@@ -1261,7 +1261,7 @@
  * The probe replaces the Z-MIN endstop and is used for Z homing.
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
 //#define USE_PROBE_FOR_Z_HOMING
@@ -1599,7 +1599,7 @@
       #define INVERT_E0_DIR false
     #endif
     #if ENABLED(INVERT_E1)
-      #define INVERT_E0_DIR true
+      #define INVERT_E1_DIR true
     #else
       #define INVERT_E1_DIR false
     #endif
@@ -1668,7 +1668,7 @@
 
 #define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
-//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
 //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
@@ -1838,7 +1838,7 @@
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  * By default the firmware assumes HIGH=FILAMENT PRESENT.
  */
-#define FILAMENT_RUNOUT_SENSOR
+//#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define NUM_RUNOUT_SENSORS   1     // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
   #define FIL_RUNOUT_INVERTING false // Set to true to invert the logic of the sensor.
@@ -1920,7 +1920,7 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-#define RESTORE_LEVELING_AFTER_G28
+//#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -2018,7 +2018,7 @@
   //=================================== Mesh ==================================
   //===========================================================================
 
-  #define MESH_INSET 10          // Set Mesh bounds as an inset region of the bed
+  #define MESH_INSET 35          // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -2042,7 +2042,7 @@
 #define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET_LFRB { 15, 15, 15, 15 } // (mm) Left, Front, Right, Back insets
+  #define LEVEL_CORNERS_INSET_LFRB { 35, 35, 35, 35 } // (mm) Left, Front, Right, Back insets
   #define LEVEL_CORNERS_HEIGHT      0.0   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
   #define LEVEL_CENTER_TOO              // Move to the center after the last corner
@@ -2077,7 +2077,7 @@
 #if ENABLED (BL_TOUCH)
   #define Z_SAFE_HOMING
 #else
-  //#define Z_SAFE_HOMING
+  #define Z_SAFE_HOMING
 #endif
 
 #if ENABLED(Z_SAFE_HOMING)
@@ -2087,7 +2087,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (5*60)
+#define HOMING_FEEDRATE_Z  (10*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2344,7 +2344,7 @@
   #define DISPLAY_CHARSET_HD44780 CYRILLIC
   #define LCD_LANGUAGE_2 en
 #else
-  #define DISPLAY_CHARSET_HD44780 JAPANESE
+  #define DISPLAY_CHARSET_HD44780 WESTERN
 #endif
 
 /**
@@ -2906,16 +2906,16 @@
 #endif
 
 // Support for Adafruit Neopixel LED driver
-//#define NEOPIXEL_LED
+#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
-  #define NEOPIXEL_TYPE   NEO_GRBW // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
+  #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
   #define NEOPIXEL_PIN    NEO_PIXEL_1       // LED driving pin
   //#define NEOPIXEL2_TYPE NEOPIXEL_TYPE
   //#define NEOPIXEL2_PIN    NEO_PIXEL_2
-  #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
+  #define NEOPIXEL_PIXELS 10       // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
   #define NEOPIXEL_IS_SEQUENTIAL   // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
-  #define NEOPIXEL_BRIGHTNESS 255  // Initial brightness (0-255)
-  //#define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
+  #define NEOPIXEL_BRIGHTNESS 128  // Initial brightness (0-255)
+  #define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
 
   // Use a single Neopixel LED for static (background) lighting
   //#define NEOPIXEL_BKGD_LED_INDEX  0               // Index of the LED to use
